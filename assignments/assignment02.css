@@ -51,7 +51,7 @@ img[alt="cat icon"] {
 img[alt="dog icon"] {
   position:relative;
   bottom:150px;
-  right:5px;
+  right:50px;
 }
 
 #positionMe {
@@ -71,7 +71,7 @@ nav {
   top:0;
   background-color:green;
   opacity:90%;
-  paadding:5px;
+  padding:5px;
   font-size:20px;
 }
 /* external css is imported into html using the <link> tag in the <head> section, as shown below.

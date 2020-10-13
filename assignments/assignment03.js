@@ -1,13 +1,3 @@
-//Functions
-functions = () => {
-  ID();
-  ClearButton();
-  ResetButton();
-  AboutButton();
-  FontsButtons();
-  ButtonFunction(); 
-}
-
 //Assign all table rows to variable, row
 let row = document.getElementsByTagName("tr");
 
@@ -18,6 +8,16 @@ ID = () => {
     //Sets id for each element
     row[i].setAttribute("id", i);   
   } 
+}
+
+//Functions
+functions = () => {
+  ID();
+  ClearButton();
+  ResetButton();
+  AboutButton();
+  FontsButtons();
+  ButtonFunction(); 
 }
 
 //Clear Button  

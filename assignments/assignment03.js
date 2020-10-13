@@ -9,7 +9,6 @@ functions = () => {
     ResetButton();
     AboutButton();
     FontsButtons();
-    ButtonFunction();
 }
 
 //This function assigns all elements with an ID.

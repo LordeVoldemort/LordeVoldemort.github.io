@@ -34,28 +34,28 @@ ClearButton = () => {
 
 
 ResetButton = () => {
-    //Create a button element and set the attributes and values
-    let btn = document.createElement("button");
-    let label = document.createTextNode("Reset Table");
-    btn.appendChild(label);
-    btn.id = "btnReset";
-    //Function to clear a table
-    let clearTable = () => {
-        for (let i = 1; i < row.length - 1; i++) {
-            clearRow(i);
-            checkActiveHole(i);
-        }
-        //Reset the TOTALs row.
-        row[row.length - 1].children[1].innerText = "-";
-        row[row.length - 1].children[2].innerText = "-";
-        row[row.length - 1].children[3].innerText = "-";
-        checkActiveHole(row.length - 1);
+  //Create a button element and set the attributes and values
+  let btn = document.createElement("button");
+  let label = document.createTextNode("Reset Table");
+  btn.appendChild(label);
+  btn.id = "btnReset";
+  //Function to clear a table
+  let clearTable = () => {
+    for (let i = 1; i < row.length - 1; i++){
+      clearRow(i);
+      checkActiveHole(i);   
     }
-    //Appends the main body
-    let tableFooter = document.getElementById("buttons");
-    tableFooter.appendChild(btn);
-    //Event listener
-    document.getElementById("btnReset").addEventListener("click", clearTable);
+    //Reset the TOTALs row.
+    row[row.length - 1].children[1].innerText = "-"
+    row[row.length - 1].children[2].innerText = "-"
+    row[row.length - 1].children[3].innerText = "-"
+    checkActiveHole(row.length - 1);
+  }
+  //Appends the main body
+  let tableFooter = document.getElementById("buttons");
+  tableFooter.appendChild(btn);
+  //Event listener
+  document.getElementById("btnReset").addEventListener("click", clearTable);  
 }
 
 

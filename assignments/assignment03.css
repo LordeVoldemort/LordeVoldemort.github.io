@@ -1,3 +1,4 @@
+/* center-align table columns */
 th, tr {text-align: center;}
 button.btn-success {background-color: green;}
 button.btn-danger {background-color: red;}

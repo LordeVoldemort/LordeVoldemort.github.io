@@ -1,3 +1,13 @@
+//Functions
+functions = () => {
+  ID();
+  ClearButton();
+  ResetButton();
+  AboutButton();
+  FontsButtons();
+  ButtonFunction(); 
+}
+
 //Assign all table rows to variable, row
 let row = document.getElementsByTagName("tr");
 
@@ -221,14 +231,4 @@ getTotal = () => {
 clearRow = (b) =>{
   row[b].children[2].innerText = "-";
   row[b].children[3].innerText = "-";
-}
-
-//Functions
-functions = () => {
-  ID();
-  ClearButton();
-  ResetButton();
-  AboutButton();
-  FontsButtons();
-  ButtonFunction(); 
 }

@@ -131,6 +131,9 @@ ButtonFunction = () => {
 }
 
 
+
+
+
 updateButton = (type, btnID) => {
   //Selects for the addition buttion
   if(type == "+"){
@@ -183,15 +186,26 @@ subtract1 = (b) => {
 }
 
 //Over
-checkDifference = (a) => {
-    let score = Number(row[a].children[2].innerText);
-    let par = Number(row[a].children[1].innerText);
-    if (score > par) {
-        let difference = score - par;
-        row[a].children[3].innerText = difference;
-    } else {
-        row[a].children[3].innerText = "-";
-    }
+checkDifference = (rowID) =>{
+  let score = Number(row[rowID].children[2].innerText);
+  let par = Number(row[rowID].children[1].innerText);
+  if (score > par){
+    let difference = score - par;
+    row[rowID].children[3].innerText = difference;
+  }
+  else{
+    row[rowID].children[3].innerText = "-";
+  }
+}
+checkActiveHole = (btnID) =>{
+  //console.log("checkActiveHole");
+   if(Number(row[btnID].children[2].innerText) > 0){
+    console.log("Attribute Added");
+  }
+  else{
+    console.log("Attribute Removed");
+    row[btnID].removeAttribute("style");
+  }
 }
 
 //Total

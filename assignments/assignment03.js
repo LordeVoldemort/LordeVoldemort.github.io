@@ -160,7 +160,7 @@ add1 = (b) =>{
   let par = Number(row[b].children[1].innerText);
   if (x + 1 <= par * 2){
     x++
-    row[btnID].children[2].innerText = x;
+    row[b].children[2].innerText = x;
   } 
 }
 

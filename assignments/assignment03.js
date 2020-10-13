@@ -43,18 +43,18 @@ ResetButton = () => {
   let clearTable = () => {
     for (let i = 1; i < row.length - 1; i++){
       clearRow(i);
-      checkActiveHole(i);   
+      ActiveHole(i);   
     }
     //Reset the TOTALs row.
     row[row.length - 1].children[1].innerText = "-"
     row[row.length - 1].children[2].innerText = "-"
     row[row.length - 1].children[3].innerText = "-"
-    checkActiveHole(row.length - 1);
+    ActiveHole(row.length - 1);
   }
   //Appends the main body
   let tableFooter = document.getElementById("buttons");
   tableFooter.appendChild(btn);
-  //Event listener
+  //Event Listener
   document.getElementById("btnReset").addEventListener("click", clearTable);  
 }
 
@@ -134,29 +134,29 @@ ButtonFunction = () => {
 
 
 
-updateButton = (type, btnID) => {
+updateButton = (a, b) => {
   //Selects for the addition buttion
-  if(type == "+"){
-    add1(btnID);
-    checkDifference(btnID);     
-    getTotal(btnID);
-    checkActiveHole(btnID);
-    checkActiveHole(row.length - 1);  
+  if(a == "+"){
+    add1(a);
+    Difference(b);     
+    getTotal(b);
+    ActiveHole(b);
+    ActiveHole(row.length - 1);  
   }
   //Selects for the subtraction button
-  else if (type == "-"){
-    subtract1(btnID);
-    checkDifference(btnID);
-    getTotal(btnID);
-    checkActiveHole(btnID);
-    checkActiveHole(row.length - 1);  
+  else if (a == "-"){
+    subtract1(b);
+    Difference(b);
+    getTotal(b);
+    ActiveHole(b);
+    ActiveHole(row.length - 1);  
   }
   //Selects for the clear button
   else {
-    clearRow(btnID);
-    getTotal(btnID);
-    checkActiveHole(btnID);
-    checkActiveHole(row.length - 1);
+    clearRow(b);
+    getTotal(b);
+    ActiveHole(b);
+    ActiveHole(row.length - 1);
   }
 }
 //Add Button
@@ -185,26 +185,26 @@ subtract1 = (b) => {
     }
 }
 
-//Over
-checkDifference = (rowID) =>{
-  let score = Number(row[rowID].children[2].innerText);
-  let par = Number(row[rowID].children[1].innerText);
+//Difference between Over
+Difference = (r) =>{
+  let score = Number(row[r].children[2].innerText);
+  let par = Number(row[r].children[1].innerText);
   if (score > par){
     let difference = score - par;
-    row[rowID].children[3].innerText = difference;
+    row[r].children[3].innerText = difference;
   }
   else{
-    row[rowID].children[3].innerText = "-";
+    row[r].children[3].innerText = "-";
   }
 }
-checkActiveHole = (btnID) =>{
-  //console.log("checkActiveHole");
-   if(Number(row[btnID].children[2].innerText) > 0){
+
+ActiveHole = (b) =>{
+   if(Number(row[b].children[2].innerText) > 0){
     console.log("Attribute Added");
   }
   else{
     console.log("Attribute Removed");
-    row[btnID].removeAttribute("style");
+    row[b].removeAttribute("style");
   }
 }
 

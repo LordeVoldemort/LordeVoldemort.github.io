@@ -3,12 +3,12 @@ let row = document.getElementsByTagName("tr");
 
 //Functions
 functions = () => {
-    ButtonFunction();
     ID();
     ClearButton();
     ResetButton();
     AboutButton();
     FontsButtons();
+    ButtonFunction();
 }
 
 //This function assigns all elements with an ID.

@@ -1,6 +1,6 @@
 //Function that need to be called when the document is loaded
 onStart = () => {
-  assignElement();
+  assignElementIDs();
   createClearButton();
   createResetButton();
   createAboutButton();
@@ -10,20 +10,14 @@ onStart = () => {
 
 //Assign all table rows to variable, row
 let row = document.getElementsByTagName("tr");
-
-
 //Function will assign all elements with an ID.
-assignElement = () => {  
-
-
+assignElementIDs = () => {  
   //use a for loop to read the array
   for (let i = 0; i < row.length - 1; i++){
     //Set the id attribute for each element
     row[i].setAttribute("id", i);   
   } 
 }
-
-
 //Creates the clear button  
 createClearButton = () => {
   for (let i = 1; i < row.length - 1; i++){
@@ -36,8 +30,6 @@ createClearButton = () => {
     row[i].children[4].appendChild(btn);
   }
 }
-
-
 //Creates a reset button
 createResetButton = () => {
   //Create a button element and set the attributes and values
@@ -63,8 +55,6 @@ createResetButton = () => {
   //Event listener
   document.getElementById("btnReset").addEventListener("click", clearTable);  
 }
-
-
 //Creates an about button
 createAboutButton = () => {
   let btn = document.createElement("button");
@@ -82,9 +72,6 @@ createAboutButton = () => {
   //Event Listener
   document.getElementById("btnAbout").addEventListener("click", displayMsg);
 }
-
-
-
 //Creates a font control buttons
 createFontConrtols = () => {
   //Create the Font increase button
@@ -253,4 +240,14 @@ getTotal = () => {
 clearRow = (btnID) =>{
   row[btnID].children[2].innerText = "-";
   row[btnID].children[3].innerText = "-";
+}
+//Hides and Shows an element
+btnhideAndSeek = () => {
+  let img = document.getElementById("hideAndSeek");
+  if (img.style.display == "none"){
+    img.style.display = "";
+  }
+  else {
+    img.style.display = "none";
+  }
 }

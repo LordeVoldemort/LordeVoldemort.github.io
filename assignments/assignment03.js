@@ -1,25 +1,17 @@
-//Function that need to be called when the document is loaded
-onStart = () => {
-  assignIDs();
-  createClearButton();
-  createResetButton();
-  createAboutButton();
-  createFontConrtols();
-  assignButtonFunction(); 
-}
-
 //Assign all table rows to variable, row
 let row = document.getElementsByTagName("tr");
-//Function will assign all elements with an ID.
-assignIDs = () => {  
-  //use a for loop to read the array
+
+
+//This function assigns all elements with an ID.
+ID = () => {  
   for (let i = 0; i < row.length - 1; i++){
-    //Set the id attribute for each element
+    //Sets id for each element
     row[i].setAttribute("id", i);   
   } 
 }
-//Creates the clear button  
-createClearButton = () => {
+
+//Clear Button  
+ClearButton = () => {
   for (let i = 1; i < row.length - 1; i++){
     let btn = document.createElement("button");
     let label = document.createTextNode("C");
@@ -30,33 +22,34 @@ createClearButton = () => {
     row[i].children[4].appendChild(btn);
   }
 }
-//Creates a reset button
-createResetButton = () => {
-  //Create a button element and set the attributes and values
+
+//Reset Button
+ResetButton = () => {
   let btn = document.createElement("button");
   let label = document.createTextNode("Reset Table");
   btn.appendChild(label);
   btn.id = "btnReset";
-  //Function to clear a table
+
   let clearTable = () => {
     for (let i = 1; i < row.length - 1; i++){
       clearRow(i);
       checkActiveHole(i);   
     }
-    //Reset the TOTALs row.
+
     row[row.length - 1].children[1].innerText = "-"
     row[row.length - 1].children[2].innerText = "-"
     row[row.length - 1].children[3].innerText = "-"
     checkActiveHole(row.length - 1);
   }
-  //Appends the main body
+
   let tableFooter = document.getElementById("buttons");
   tableFooter.appendChild(btn);
-  //Event listener
   document.getElementById("btnReset").addEventListener("click", clearTable);  
 }
-//Creates an about button
-createAboutButton = () => {
+
+
+//About Button
+AboutButton = () => {
   let btn = document.createElement("button");
   let label = document.createTextNode("About");
   btn.appendChild(label);
@@ -66,31 +59,28 @@ createAboutButton = () => {
     alert("Golf Scorecard 1.0. All rights reserved.");
   } 
   
-  //Appends the main body
   let tableFooter = document.getElementById("buttons");
   tableFooter.appendChild(btn);
-  //Event Listener
   document.getElementById("btnAbout").addEventListener("click", displayMsg);
 }
-//Creates a font control buttons
-createFontConrtols = () => {
-  //Create the Font increase button
+
+//Font Buttons
+FontsButtons = () => {
+  //Font increase button
   let btn = document.createElement("button");
   let label = document.createTextNode("Increase Font");
   btn.appendChild(label);
   btn.id = "btnFont+";
   
-  //Appends the main body
   let tableFooter = document.getElementById("buttons");
   tableFooter.appendChild(btn);
   
-  //Create the Font decrease button
+  //Font decrease button
   btn = document.createElement("button");
   label = document.createTextNode("Decrease Font");
   btn.appendChild(label);
   btn.id = "btnFont-";
   
-  //Appends the main body
   tableFooter = document.getElementById("buttons");
   tableFooter.appendChild(btn);
   
@@ -111,13 +101,11 @@ createFontConrtols = () => {
       body[0].style.removeProperty("font-size");
     }
   } 
-  //Event Listener
   document.getElementById("btnFont+").addEventListener("click", increaseFont);
   document.getElementById("btnFont-").addEventListener("click", decreaseFont);
 }
 
-//Function will assign all button element with an onclick attribute for their respective function
-assignButtonFunction = () =>{
+ButtonFunction = () =>{
   for (let i = 1; i < row.length - 1; i++){
     row[i].children[4].children[0].onclick = function(){updateButton("+", i);};
     row[i].children[4].children[1].onclick = function(){updateButton("-", i);};
@@ -126,80 +114,73 @@ assignButtonFunction = () =>{
 }
 
 
-//Sum of multible functions to be executed when a buttion is clicked
-updateButton = (type, btnID) => {
-  //Selects for the addition buttion
-  if(type == "+"){
-    add1(btnID);
-    checkDifference(btnID);     
-    getTotal(btnID);
-    checkActiveHole(btnID);
+updateButton = (a, b) => {
+  //Sets Add Button
+  if(a == "+"){
+    add1(b);
+    checkDifference(b);     
+    getTotal(b);
+    checkActiveHole(b);
     checkActiveHole(row.length - 1);  
   }
-  //Selects for the subtraction button
-  else if (type == "-"){
-    subtract1(btnID);
-    checkDifference(btnID);
-    getTotal(btnID);
-    checkActiveHole(btnID);
+  //Sets Subtraction Button
+  else if (a == "-"){
+    subtract1(b);
+    checkDifference(b);
+    getTotal(b);
+    checkActiveHole(b);
     checkActiveHole(row.length - 1);  
   }
-  //Selects for the clear button
+  //Sets Clear Button
   else {
-    clearRow(btnID);
-    getTotal(btnID);
-    checkActiveHole(btnID);
+    clearRow(b);
+    getTotal(b);
+    checkActiveHole(b);
     checkActiveHole(row.length - 1);
   }
 }
-//Adds 1 to the score
-//Checks if the score is double the par, does nothing if false
-add1 = (btnID) =>{
-  if("-" == row[btnID].children[2].innerText){
-    row[btnID].children[2].innerText = "0"
+
+//Add Button
+add1 = (b) =>{
+  if("-" == row[b].children[2].innerText){
+    row[b].children[2].innerText = "0"
   }
-  //Find the row and cell, then return the inner text. Converts the string to a number.
-  let x = Number(row[btnID].children[2].innerText);
-  //Find the row and cell, then return the inner text. Converts the string to a number.
-  let par = Number(row[btnID].children[1].innerText);
+  //Converting the string to number.
+  let x = Number(row[b].children[2].innerText);
+  let par = Number(row[b].children[1].innerText);
   if (x + 1 <= par * 2){
-    //Increment number by 1
     x++
-    //Set the new value of the cell.
     row[btnID].children[2].innerText = x;
   } 
 }
-//Subtracts 1 from the score
-//Checks if the score is zero, does nothing if false
-subtract1 = (btnID) => {
-  //Find the row and cell, then return the inner text. Converts the string to a number.
-  let x = Number(row[btnID].children[2].innerText); 
-  //Checks if the score is 0, does nothing if true
+
+
+//Subtract Button
+subtract1 = (b) => {
+  let x = Number(row[b].children[2].innerText); 
   if (x - 1 >= 1){
-    //decrease number by 1
     x--
-    //Set the new value of the cell.
-    row[btnID].children[2].innerText = x;
+    row[b].children[2].innerText = x;
   } 
   else {
-    //Allows the user to clear the cell
-    row[btnID].children[2].innerText = "-";
-  }
-}
-//Checks the difference between the score and par.
-checkDifference = (rowID) =>{
-  let score = Number(row[rowID].children[2].innerText);
-  let par = Number(row[rowID].children[1].innerText);
-  if (score > par){
-    let difference = score - par;
-    row[rowID].children[3].innerText = difference;
-  }
-  else{
-    row[rowID].children[3].innerText = "-";
+    row[b].children[2].innerText = "-";
   }
 }
 
-//Finds the sum of a column
+//Over
+checkDifference = (a) =>{
+  let score = Number(row[a].children[2].innerText);
+  let par = Number(row[a].children[1].innerText);
+  if (score > par){
+    let difference = score - par;
+    row[a].children[3].innerText = difference;
+  }
+  else{
+    row[a].children[3].innerText = "-";
+  }
+}
+
+//Total
 getTotal = () => {  
   let sumPar = 0;
   let sumScore = 0;
@@ -236,18 +217,18 @@ getTotal = () => {
   } 
 }
 
-//Clears the row
-clearRow = (btnID) =>{
-  row[btnID].children[2].innerText = "-";
-  row[btnID].children[3].innerText = "-";
+//Clears
+clearRow = (b) =>{
+  row[b].children[2].innerText = "-";
+  row[b].children[3].innerText = "-";
 }
-//Hides and Shows an element
-btnhideAndSeek = () => {
-  let img = document.getElementById("hideAndSeek");
-  if (img.style.display == "none"){
-    img.style.display = "";
-  }
-  else {
-    img.style.display = "none";
-  }
+
+//Functions
+functions = () => {
+  ID();
+  ClearButton();
+  ResetButton();
+  AboutButton();
+  FontsButtons();
+  ButtonFunction(); 
 }

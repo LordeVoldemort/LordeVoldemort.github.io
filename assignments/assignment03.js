@@ -1,15 +1,6 @@
 //Assign all table rows to variable, row
 let row = document.getElementsByTagName("tr");
 
-
-//This function assigns all elements with an ID.
-ID = () => {
-    for (let i = 0; i < row.length - 1; i++) {
-        //Sets id for each element
-        row[i].setAttribute("id", i);
-    }
-}
-
 //Functions
 functions = () => {
     ID();
@@ -18,6 +9,14 @@ functions = () => {
     AboutButton();
     FontsButtons();
     ButtonFunction();
+}
+
+//This function assigns all elements with an ID.
+ID = () => {
+    for (let i = 0; i < row.length - 1; i++) {
+        //Sets id for each element
+        row[i].setAttribute("id", i);
+    }
 }
 
 //Clear Button  
@@ -132,32 +131,31 @@ ButtonFunction = () => {
 }
 
 
-updateButton = (a, b) => {
-    //Sets Add Button
-    if (a == "+") {
-        add1(b);
-        checkDifference(b);
-        getTotal(b);
-        checkActiveHole(b);
-        checkActiveHole(row.length - 1);
-    }
-    //Sets Subtraction Button
-    else if (a == "-") {
-        subtract1(b);
-        checkDifference(b);
-        getTotal(b);
-        checkActiveHole(b);
-        checkActiveHole(row.length - 1);
-    }
-    //Sets Clear Button
-    else {
-        clearRow(b);
-        getTotal(b);
-        checkActiveHole(b);
-        checkActiveHole(row.length - 1);
-    }
+updateButton = (type, btnID) => {
+  //Selects for the addition buttion
+  if(type == "+"){
+    add1(btnID);
+    checkDifference(btnID);     
+    getTotal(btnID);
+    checkActiveHole(btnID);
+    checkActiveHole(row.length - 1);  
+  }
+  //Selects for the subtraction button
+  else if (type == "-"){
+    subtract1(btnID);
+    checkDifference(btnID);
+    getTotal(btnID);
+    checkActiveHole(btnID);
+    checkActiveHole(row.length - 1);  
+  }
+  //Selects for the clear button
+  else {
+    clearRow(btnID);
+    getTotal(btnID);
+    checkActiveHole(btnID);
+    checkActiveHole(row.length - 1);
+  }
 }
-
 //Add Button
 add1 = (b) => {
     if ("-" == row[b].children[2].innerText) {

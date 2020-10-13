@@ -34,28 +34,28 @@ ClearButton = () => {
 
 
 ResetButton = () => {
-  //Create a button element and set the attributes and values
-  let btn = document.createElement("button");
-  let label = document.createTextNode("Reset Table");
-  btn.appendChild(label);
-  btn.id = "btnReset";
-  //Function to clear a table
-  let clearTable = () => {
-    for (let i = 1; i < row.length - 1; i++){
-      clearRow(i);
-      ActiveHole(i);   
+    //Create a button element and set the attributes and values
+    let btn = document.createElement("button");
+    let label = document.createTextNode("Reset Table");
+    btn.appendChild(label);
+    btn.id = "btnReset";
+    //Function to clear a table
+    let clearTable = () => {
+        for (let i = 1; i < row.length - 1; i++) {
+            clearRow(i);
+            ActiveHole(i);
+        }
+        //Reset the TOTALs row.
+        row[row.length - 1].children[1].innerText = "-"
+        row[row.length - 1].children[2].innerText = "-"
+        row[row.length - 1].children[3].innerText = "-"
+        ActiveHole(row.length - 1);
     }
-    //Reset the TOTALs row.
-    row[row.length - 1].children[1].innerText = "-"
-    row[row.length - 1].children[2].innerText = "-"
-    row[row.length - 1].children[3].innerText = "-"
-    ActiveHole(row.length - 1);
-  }
-  //Appends the main body
-  let tableFooter = document.getElementById("buttons");
-  tableFooter.appendChild(btn);
-  //Event Listener
-  document.getElementById("btnReset").addEventListener("click", clearTable);  
+    //Appends the main body
+    let tableFooter = document.getElementById("buttons");
+    tableFooter.appendChild(btn);
+    //Event Listener
+    document.getElementById("btnReset").addEventListener("click", clearTable);
 }
 
 
@@ -133,31 +133,30 @@ ButtonFunction = () => {
 
 
 
-
 updateButton = (a, b) => {
-  //Selects for the addition buttion
-  if(a == "+"){
-    add1(a);
-    Difference(b);     
-    getTotal(b);
-    ActiveHole(b);
-    ActiveHole(row.length - 1);  
-  }
-  //Selects for the subtraction button
-  else if (a == "-"){
-    subtract1(b);
-    Difference(b);
-    getTotal(b);
-    ActiveHole(b);
-    ActiveHole(row.length - 1);  
-  }
-  //Selects for the clear button
-  else {
-    clearRow(b);
-    getTotal(b);
-    ActiveHole(b);
-    ActiveHole(row.length - 1);
-  }
+    //Selects for the addition buttion
+    if (a == "+") {
+        add1(b);
+        Difference(b);
+        getTotal(b);
+        ActiveHole(b);
+        ActiveHole(row.length - 1);
+    }
+    //Selects for the subtraction button
+    else if (a == "-") {
+        subtract1(b);
+        Difference(b);
+        getTotal(b);
+        ActiveHole(b);
+        ActiveHole(row.length - 1);
+    }
+    //Selects for the clear button
+    else {
+        clearRow(b);
+        getTotal(b);
+        ActiveHole(b);
+        ActiveHole(row.length - 1);
+    }
 }
 //Add Button
 add1 = (b) => {
@@ -186,26 +185,24 @@ subtract1 = (b) => {
 }
 
 //Difference between Over
-Difference = (r) =>{
-  let score = Number(row[r].children[2].innerText);
-  let par = Number(row[r].children[1].innerText);
-  if (score > par){
-    let difference = score - par;
-    row[r].children[3].innerText = difference;
-  }
-  else{
-    row[r].children[3].innerText = "-";
-  }
+Difference = (r) => {
+    let score = Number(row[r].children[2].innerText);
+    let par = Number(row[r].children[1].innerText);
+    if (score > par) {
+        let difference = score - par;
+        row[r].children[3].innerText = difference;
+    } else {
+        row[r].children[3].innerText = "-";
+    }
 }
 
-ActiveHole = (b) =>{
-   if(Number(row[b].children[2].innerText) > 0){
-    console.log("Attribute Added");
-  }
-  else{
-    console.log("Attribute Removed");
-    row[b].removeAttribute("style");
-  }
+ActiveHole = (b) => {
+    if (Number(row[b].children[2].innerText) > 0) {
+        console.log("Attribute Added");
+    } else {
+        console.log("Attribute Removed");
+        row[b].removeAttribute("style");
+    }
 }
 
 //Total

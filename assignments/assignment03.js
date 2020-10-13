@@ -1,6 +1,6 @@
 //Function that need to be called when the document is loaded
 onStart = () => {
-  assignElementIDs();
+  assignIDs();
   createClearButton();
   createResetButton();
   createAboutButton();
@@ -11,7 +11,7 @@ onStart = () => {
 //Assign all table rows to variable, row
 let row = document.getElementsByTagName("tr");
 //Function will assign all elements with an ID.
-assignElementIDs = () => {  
+assignIDs = () => {  
   //use a for loop to read the array
   for (let i = 0; i < row.length - 1; i++){
     //Set the id attribute for each element

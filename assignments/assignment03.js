@@ -3,6 +3,7 @@ let row = document.getElementsByTagName("tr");
 
 //Functions
 functions = () => {
+    ButtonFunction();
     ID();
     ClearButton();
     ResetButton();

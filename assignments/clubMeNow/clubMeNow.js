@@ -134,7 +134,6 @@ function resetAllClubDistances() {
 
 
 
-
 // navigate to "Distance Entry" screen
 function displayclubDistanceEntryForm(c) {
 	localStorage.setItem("club", c); // save chosen club

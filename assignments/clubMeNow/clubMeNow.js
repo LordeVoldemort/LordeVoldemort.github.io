@@ -158,13 +158,6 @@ function undoLastShot() {
 
 
 
-//Alerts User if the ammount of clubs in their bag is greater then 14
-function CheckAmount(){
-	if(clubs.length > 14){
-		alert("WARNING: you are only allowed to carry 14 clubs in your golf bag in match play competition.");
-	}
-}
-
 
 
 
@@ -254,5 +247,15 @@ function updateStats(shotDistance=0) {
 		localStorage.setItem("clubs", str);
 		// return to list screen
 		window.location.href = "clubDistanceList.html"; 
+	}
+}
+
+
+
+
+//Alerts User if the ammount of clubs in their bag is greater then 14
+function CheckAmount(){
+	if(clubs.length > 14){
+		alert("WARNING: you are only allowed to carry 14 clubs in your golf bag in match play competition.");
 	}
 }

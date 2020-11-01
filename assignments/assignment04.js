@@ -489,6 +489,70 @@ let formArray = [
 // Step 3. loop through the JS object array to populate the form
 
 // your code here
+function populateForm(arr){
+  //get the table
+  let table = document.getElementById("table00");
+  
+  //loop through the array to assign attributes, then append to the form
+  for(let i=0; i<arr.length; i++){
+    //Create Row
+    let tr = document.createElement("tr");
+    //Create Columns
+    let td1 = document.createElement("td");
+    let td2 = document.createElement("td");
+    let td3 = document.createElement("td");
+    
+    //Create lable
+    td1.innerHTML = arr[i].label;
+    
+    //Create input
+    let input = document.createElement("input");
+    input.setAttribute("type", arr[i].inputType);
+    input.setAttribute("id", arr[i].id);
+    input.setAttribute("onkeyup", arr[i].onkeyup);
+    
+    //Create div
+    let div = document.createElement("div");    
+    div.setAttribute("id", arr[i].errorId);
+    
+    //Append elements to colums
+    td2.appendChild(input);
+    td3.appendChild(div);
+    
+    //Append columns to row
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    
+    //Append row to table
+    table.children[0].appendChild(tr);    
+  }
+  //Create input button
+  //<input type="button" id="create" value="Validate" onclick="validate();finalValidate();"/>
+  //Create Row
+  let tr = document.createElement("tr");
+  //Create Columns
+  let td1 = document.createElement("td");
+  let td2 = document.createElement("td");
+  //Create input
+  let input = document.createElement("input");
+  input.setAttribute("type", "button");
+  input.setAttribute("id", "create");
+  input.setAttribute("value", "Validate");
+  input.setAttribute("onclick","validate();finalValidate();");
+  //Create div
+  let div = document.createElement("div");  
+  div.setAttribute("id","errFinal");
+  //Append
+  td1.appendChild(input);
+  td2.appendChild(div);
+  //Append
+  tr.appendChild(td1);
+  tr.appendChild(td2);
+  //Append row to table
+  table.children[0].appendChild(tr);  
+}
+populateForm(formArray);
 
 // append to tableobj a 3-column table row 
 function appendTableRow3 (tableobj, col1, col2, col3) {

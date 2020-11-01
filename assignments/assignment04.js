@@ -105,7 +105,7 @@ appendTableHeader(table3b, table3A.children[0].children[0].children[0].children[
 for (let i = 1; i < table3A.children[0].children[0].children.length; i++) {
   appendTable(table3b, table3A.children[0].children[0].children[i].children[0].innerHTML, table3A.children[0].children[0].children[i].children[1].innerHTML, table3A.children[0].children[0].children[i].children[2].innerHTML);
 }
-appendTable(table3b, "Grand Total","", Quantity());
+appendTable(table3b, "Total","", Quantity());
 
 function Quantity() {
   let tbl = document.getElementById("table3b");
@@ -152,7 +152,7 @@ function appendTable(tableobj, col1, col2, col3) {
               p = parseFloat(p);
               totalPrice += p;
           }
-          return "$ "+ totalPrice.toString();
+          return totalPrice.toString();
       }
       // create table row DOM object
   let tr = document.createElement("tr");

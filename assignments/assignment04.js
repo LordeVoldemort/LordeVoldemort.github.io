@@ -1,21 +1,28 @@
 // 6. modify basic JS object, with "this" keyword
 let person = {
-  firstName: "Jane",
-  lastName: "Doe",
-  age: 45,
-  streetAddress: "123 Main Street",
-  city: "University Center",
-  state: "Michigan",
-  zipCode: 48360,
-  fullAddress: function() {
-          return this.streetAddress + ", " + this.city + ", " + this.state + ", " + this.zipCode;
-      },
-  fullName: function() {
-          return this.firstName + " " + this.lastName;
-      }
-};
+    firstName: "Jane",
+    lastName: "Doe",
+    age: 45,
+    fullName: function() {
+        return this.firstName + " " + person.lastName
+    }
+}
 document.getElementById("1A").innerHTML = person.fullName();
+
+// Instructions
+// modify person object, above, as follows
+// add properties, streetAddress, city, state, zipCode
+// add method, fullAddress(), which prints full address on a single line.
+// Display output of fullAddress() in <div id="1B">
+person.streetAddress = "75 Fun Street";
+person.city = "Fun City";
+person.state = "Michigan";
+person.zipCode = "48604";
+person.fullAddress = function() {
+    return this.streetAddress + " " + this.city + ", " + this.state + " " + this.zipCode;
+}
 document.getElementById("1B").innerHTML = person.fullAddress();
+// ==================
 
 // Instructions
 // modify person object, above, as follows

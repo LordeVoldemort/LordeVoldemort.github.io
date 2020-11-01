@@ -12,10 +12,10 @@ document.getElementById("1A").innerHTML = person.fullName();
 // add properties, streetAddress, city, state, zipCode
 // add method, fullAddress(), which prints full address on a single line.
 // Display output of fullAddress() in <div id="1B">
-person.streetAddress = "1234 Test Street";
-person.city = "Funky Town";
-person.state = "California";
-person.zipCode = "56789";
+person.streetAddress = "75 Fun Street";
+person.city = "Fun City";
+person.state = "Michigan";
+person.zipCode = "48604";
 person.fullAddress = function() {return this.streetAddress + " " + this.city + ", " + this.state + " " + this.zipCode;}
 document.getElementById("1B").innerHTML = person.fullAddress();
 // ==================
@@ -173,9 +173,9 @@ function columTotal(columID, ){
   table3b.children[0].children[4].children[columID].innerText = sum;
 }
 // 9. Refactor a non-object-oriented form
+
 <!-- code below is from: https://www.guru99.com/practical-code-examples-using-javascript.html -->
   
-  //MY CODE:
   
   //Checks which object is in focus, returns that objects index.  
   function isInFocus(i){
@@ -207,7 +207,6 @@ function columTotal(columID, ){
     }
   }
   
-  //END OF MY CODE
   
      // initialize error div id array
     const divs = new Array();
@@ -240,7 +239,7 @@ function columTotal(columID, ){
         for (let i in inputs) {
             let errMessage = errors[i];
             let div = divs[i];
-      //MY LINE OF CODE
+
       if(i == isInFocus(i)){
         if (inputs[i] == "" )
           document.getElementById(div).innerHTML = errMessage;
@@ -266,7 +265,6 @@ function columTotal(columID, ){
         }
     }
 
-    // function: finalValidate() ------------------------------------
     function finalValidate() {
         let count = 0;
         for (let i = 0; i < 6; i++) {
@@ -320,7 +318,7 @@ function populateForm(arr){
     let td2 = document.createElement("td");
     let td3 = document.createElement("td");
     
-    //Create lable
+    //Create the lable
     td1.innerHTML = arr[i].label;
     
     //Create input

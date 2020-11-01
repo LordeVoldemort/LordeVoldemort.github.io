@@ -280,95 +280,127 @@ function columTotal(columID, ){
 
 
 // 10. Create a more object-oriented form
-
+let div5b = document.getElementById("5B");
 // Step 1. Create/append the DOM object 
 let form00 = document.getElementById("form00");
 let table00 = createTable("table00");
 form00.appendChild(table00);
+div5b.appendChild(form00);
 
 // Step 2. Create an JS object array containing form info 
-let formArray = [
-  {label: "First name:", inputType: "text", id: "first", 
-    onkeyup: "validate();", errorId: "errFirst"}, 
-  {label: "Last name:",  inputType: "text", id: "last",  
-    onkeyup: "validate();", errorId: "errLast" }, 
-  {label: "Email:",      inputType: "text", id: "email", 
-    onkeyup: "validate();", errorId: "errEmail"}, 
-  {label: "User id:",    inputType: "text", id: "uid",   
-    onkeyup: "validate();", errorId: "errUid"  }, 
-  {label: "Password:",   inputType: "password", id: "password", 
-    onkeyup: "validate();", errorId: "errPassword"}, 
-  {label: "Confirm Password:", inputType: "password", id: "confirm", 
-    onkeyup: "validate();", errorId: "errConfirm"}
-];
+let formArray = [{
+  label: "First name:",
+  inputType: "text",
+  id: "First",
+  onkeyup: "ObjectValidate(0);",
+  errorId: "ObjectErrFirst"
+}, {
+  label: "Last name:",
+  inputType: "text",
+  id: "Last",
+  onkeyup: "ObjectValidate(1);",
+  errorId: "ObjectErrLast"
+}, {
+  label: "Email:",
+  inputType: "text",
+  id: "Email",
+  onkeyup: "ObjectValidate(2);",
+  errorId: "ObjectErrEmail"
+}, {
+  label: "User id:",
+  inputType: "text",
+  id: "Uid",
+  onkeyup: "ObjectValidate(3)",
+  errorId: "ObjectErrUid"
+}, {
+  label: "Password:",
+  inputType: "password",
+  id: "Password",
+  onkeyup: "ObjectValidate(4);",
+  errorId: "ObjectErrPassword"
+}, {
+  label: "Confirm Password:",
+  inputType: "password",
+  id: "Confirm",
+  onkeyup: "ObjectValidate(5);",
+  errorId: "ObjectErrConfirm"
+}];
 
 // Step 3. loop through the JS object array to populate the form
-
-// your code here
-function populateForm(arr){
-  //get the table
-  let table = document.getElementById("table00");
-  
-  //loop through the array to assign attributes, then append to the form
-  for(let i=0; i<arr.length; i++){
-    //Create Row
-    let tr = document.createElement("tr");
-    //Create Columns
-    let td1 = document.createElement("td");
-    let td2 = document.createElement("td");
-    let td3 = document.createElement("td");
-    
-    //Create the lable
-    td1.innerHTML = arr[i].label;
-    
-    //Create input
-    let input = document.createElement("input");
-    input.setAttribute("type", arr[i].inputType);
-    input.setAttribute("id", arr[i].id);
-    input.setAttribute("onkeyup", arr[i].onkeyup);
-    
-    //Create div
-    let div = document.createElement("div");    
-    div.setAttribute("id", arr[i].errorId);
-    
-    //Append elements to colums
-    td2.appendChild(input);
-    td3.appendChild(div);
-    
-    //Append columns to row
-    tr.appendChild(td1);
-    tr.appendChild(td2);
-    tr.appendChild(td3);
-    
-    //Append row to table
-    table.children[0].appendChild(tr);    
-  }
-  //Create input button
-  //<input type="button" id="create" value="Validate" onclick="validate();finalValidate();"/>
-  //Create Row
-  let tr = document.createElement("tr");
-  //Create Columns
+for (let i in formArray) {
+  // create column (table division) DOM objects
   let td1 = document.createElement("td");
   let td2 = document.createElement("td");
-  //Create input
+  let td3 = document.createElement("td");
+
   let input = document.createElement("input");
-  input.setAttribute("type", "button");
-  input.setAttribute("id", "create");
-  input.setAttribute("value", "Validate");
-  input.setAttribute("onclick","validate();finalValidate();");
-  //Create div
-  let div = document.createElement("div");  
-  div.setAttribute("id","errFinal");
-  //Append
-  td1.appendChild(input);
-  td2.appendChild(div);
-  //Append
+  input.setAttribute('type', formArray[i].inputType);
+  input.setAttribute('id', formArray[i].id);
+  input.setAttribute('onkeyup', formArray[i].onkeyup);
+
+  let divErr = document.createElement("div");
+  divErr.setAttribute('id', formArray[i].errorId)
+      // insert content into columns
+  td1.innerHTML = formArray[i].label;
+  td2.appendChild(input);
+  td3.appendChild(divErr);
+  // create table row DOM object
+  let tr = document.createElement("tr");
+  // append table divisions (columns) to table row
   tr.appendChild(td1);
   tr.appendChild(td2);
-  //Append row to table
-  table.children[0].appendChild(tr);  
+  tr.appendChild(td3);
+  // append the row to the tbody element in the table
+  table00.children[0].appendChild(tr);
 }
-populateForm(formArray);
+
+function ObjectValidate(i) {
+  // initialize error div id array
+  let divsObject = new Array();
+  divsObject[0] = "ObjectErrFirst";
+  divsObject[1] = "ObjectErrLast";
+  divsObject[2] = "ObjectErrEmail";
+  divsObject[3] = "ObjectErrUid";
+  divsObject[4] = "ObjectErrPassword";
+  divsObject[5] = "ObjectErrConfirm";
+  // initialize input array
+  let inputs = new Array();
+  inputs[0] = document.getElementById('First').value;
+  inputs[1] = document.getElementById('Last').value;
+  inputs[2] = document.getElementById('Email').value;
+  inputs[3] = document.getElementById('Uid').value;
+  inputs[4] = document.getElementById('Password').value;
+  inputs[5] = document.getElementById('Confirm').value;
+
+  // update error array with error message on a specific box
+  let errMessage = errors[i];
+  let div = divsObject[i];
+  switch (i) {
+      case 2:
+          let atpos = inputs[i].indexOf("@");
+          let dotpos = inputs[i].lastIndexOf(".");
+          if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= inputs[i].length)
+              document.getElementById(div).innerHTML = "<span style='color: red'>Enter a valid email address!</span>";
+          else
+              document.getElementById(div).innerHTML = "OK!";
+          break;
+      case 5:
+          let first = document.getElementById('Password').value;
+          let second = document.getElementById('Confirm').value;
+          if (inputs[i] == "")
+              document.getElementById(div).innerHTML = errMessage;
+          else if (second != first)
+              document.getElementById(div).innerHTML = "<span style='color: red'>Your passwords don't match!</span>";
+          else
+              document.getElementById(div).innerHTML = "OK!";
+          break;
+      default:
+          if (inputs[i] == "")
+              document.getElementById(div).innerHTML = errMessage;
+          else
+              document.getElementById(div).innerHTML = "OK!";
+  }
+}
 
 // append to tableobj a 3-column table row 
 function appendTableRow3 (tableobj, col1, col2, col3) {

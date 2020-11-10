@@ -6,6 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
   <!--Bootstrap-->
   <link rel="stylesheet" href="/BareBootstrap/vendor/bootstrap/css/bootstrap.min.css">
+<style>
+   .button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
 </head>
 <body> 
   <div class ="container-fluid">
@@ -28,8 +42,8 @@
 
 <div class="jumbotron">
 <h2 style="text-align:center;">Example AJAX call to Covid19api</h2>
-<button style="text-align:center;" type="button" onclick="loadContent()">Load Covid-19 Content</button>
-</div>div>
+<button style="text-align:center;" type="button" class="button" onclick="loadContent()">Load Covid-19 Content</button>
+</div>
 <!-- ChartJS: https://www.chartjs.org/ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 

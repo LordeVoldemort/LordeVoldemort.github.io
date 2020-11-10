@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <title>COVID-19 Data Chart</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
+  <!--Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>Example Chart using Chart.js</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <canvas id="myChart"></canvas>
+   </div>
+   <div class="col-md-6">
+     <h1>Covid-19</h1>
+     <p>
+     The COVID-19 pandemic, also known as the coronavirus pandemic, is an ongoing pandemic of coronavirus disease 2019 (COVID-19) caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2),
+     first identified in December 2019 in Wuhan, China. The outbreak was declared a Public Health Emergency of International Concern in January 2020 and a pandemic in March 2020.
+     As of 8 November 2020, more than 49.9 million cases have been confirmed, with more than 1.25 million deaths attributed to COVID-19. 
+     <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic">(Wikipedia, November 8, 2020)</a>
+     </p>
+   <div>
+  </div>
+</div>
+<h2>Example AJAX call to Covid19api</h2>
+<button type="button" onclick="loadContent()">Load Covid-19 Content</button>
+
+
+<!-- ChartJS: https://www.chartjs.org/ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+
+<!-- Lodash: https://lodash.com/ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
+
+<!-- Day.js: https://day.js.org/docs/en/installation/browser -->
+<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+
+<script src="assignment05.js"></script>
+
+</body>
+</html>

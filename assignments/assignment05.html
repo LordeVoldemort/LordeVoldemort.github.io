@@ -1,59 +1,69 @@
+
+
 <!doctype html>
 <html lang="en-US">
-<head>
-  <title>COVID-19 Data Chart</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
-  <!--Bootstrap-->
-  <link rel="stylesheet" href="/BareBootstrap/vendor/bootstrap/css/bootstrap.min.css">
-<style>
-   .button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 15px 100px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-</style>
-</head>
-<body> 
-  <div class ="container-fluid">
-    <div class="jumbotron" >
-      <h2 style="text-align:center;">Example Chart using Chart.js</h2> 
-    </div>
-  
-    <div class="row">
-      <div class="col-12 col-md-8">
-         <canvas id="myChart"></canvas>
-      </div>
-      <div class="col-12 col-md-4">
-        <h2>Covid-19 </h2>
-        <p>"The COVID-19 pandemic, also known as the coronavirus pandemic, is an ongoing pandemic of coronavirus disease 2019 (COVID-19)
-           caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2), first identified in December 2019 in Wuhan, China."
-          (<a href="https://en.wikipedia.org/wiki/COVID-19_pandemic">Wikipedia, November 8, 2020</a>)</p>
+   <head>
+      <title>COVID-19 Data Chart</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
+      <!--Bootstrap-->
+      <link rel="stylesheet" href="/BareBootstrap/vendor/bootstrap/css/bootstrap.min.css">
+      <style>
+         .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 100px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+         }
+      </style>
+   </head>
+   <body>
+      <div class ="container-fluid">
+         <div class="jumbotron" >
+            <h2 style="text-align:center;">Example Chart using Chart.js</h2>
          </div>
-    </div>
-  </div>
-
-<div class="jumbotron">
-<h2 style="text-align:center;">Example AJAX call to Covid19api</h2>
-<button style="text-align:center;" type="button" class="button" onclick="loadContent()">Load Covid-19 Content</button>
-</div>
-<!-- ChartJS: https://www.chartjs.org/ -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
-
-<!-- Lodash: https://lodash.com/ -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
-
-<!-- Day.js: https://day.js.org/docs/en/installation/browser -->
-<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
-
-<script src="assignment05.js"></script>
-
- </body>
+         <div class="row">
+            <div class="col-12 col-md-8">
+               <canvas id="myChart"></canvas>
+            </div>
+            <div class="col-12 col-md-4">
+               <h2>Covid-19 </h2>
+               <p>"The COVID-19 pandemic, also known as the coronavirus pandemic, is an ongoing pandemic of coronavirus disease 2019 (COVID-19)
+                  caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2), first identified in December 2019 in Wuhan, China."
+                  (<a href="https://en.wikipedia.org/wiki/COVID-19_pandemic">Wikipedia, November 8, 2020</a>)
+               </p>
+            </div>
+         </div>
+      </div>
+      <div class="jumbotron">
+         <div>
+            <table width="100%">
+               <tbody>
+                  <tr>
+                     <td><button type="button" class="button" onclick="loadContent()">Load Covid-19 Graph</button><br></td>
+                     <td>
+                        <h2>
+                        Example AJAX call to Covid19api
+                        <h2>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <!-- ChartJS: https://www.chartjs.org/ -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+      <!-- Lodash: https://lodash.com/ -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
+      <!-- Day.js: https://day.js.org/docs/en/installation/browser -->
+      <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+      <script src="assignment05.js"></script>
+   </body>
 </html>
+

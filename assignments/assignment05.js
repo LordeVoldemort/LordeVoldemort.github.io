@@ -34,7 +34,7 @@ var chartData = {
       data: [2, 29, 5, 5, 2, 3, 10],
       backgroundColor: "rgba(255,140,0,0.4)"
     }, {
-    label: 'test',
+    label: 'blueberry',
     data: [2, 29, 5, 5, 2, 3, 10],
     backgroundColor: "rgba(0,0,100,0.4)"
   }]
@@ -66,17 +66,8 @@ var chartData = {
 };
 // var myChart = new Chart(ctx, chartData); 
 
-// ---------- loadContent() function ----------
-
-// Note: you can't execute API data dependent code outside the loadContent() function because the code might execute before the AJAX call responds, that is, it might execute before the variable, covidJson, is initialized with data from the API. Example below.
-// console.log(covidJson.Global.NewConfirmed); // error 
-
 // code below modified from: 
 // https://www.w3schools.com/js/js_ajax_intro.asp
-
-
-//Not entering the if statement on xhttp.onreadystatechange
-//Need to move the content to another function and execute it seperately based on dataExists
 
 function loadContent() {
   //If no data exists, get from COVID19 API
@@ -173,7 +164,7 @@ function loadData () {
 
 // data from: https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population
 var populations = {
- 'china' : 1405137440,
+'china' : 1405137440,
 'india' : 1369152434,
 'united-states' : 330578332,
 'indonesia' : 269603400,

@@ -13,7 +13,7 @@
 		//function loadDoc() {
 		$(document).ready( function() {
 		
-		  // --Replaced JS with JQuery -JG --
+		  // --Replaced JS with JQuery
 		  // pre-fill defaults for first loan year
 		  var InitialYear = loans[0].loan_year;
 		  $("#loan_year0" + 1).val(InitialYear++);

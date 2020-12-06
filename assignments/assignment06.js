@@ -63,7 +63,7 @@
 			}			 
 		  });
 		  
-		  // Update the interest rates once the focus on that cell is lost - JG
+		  // Update the interest rates once the focus on that cell is lost
 		  $("#loan_int01").blur( function() { 
 		    if(validate($(this).val())){
 			  updateInterestRate();
@@ -71,7 +71,7 @@
 			}
 		  });
 		  
-		  //Update the ammount, yearly balance and total once the focus is lost on a cell in the Amount column - JG
+		  //Update the ammount, yearly balance and total once the focus is lost on a cell in the Amount column
 		  //Note: https://api.jquery.com/attribute-contains-selector/
 		  $("input[id*=loan_amt]").blur(function(){
 			//console.log("Amount Selector: "+this);
@@ -103,7 +103,7 @@
 		  }
 		}
 		
-		//Update the cells in the Int Rate column. -JG
+		//Update the cells in the Int Rate column.
 		function updateInterestRate(){
 			loans[0].loan_int_rate = parseFloat($("#loan_int01").val());
 			for(var i=1; i<5; i++) {
@@ -111,7 +111,7 @@
 				$("#loan_int0"+ (i+1) ).val(loans[i].loan_int_rate);
 			}			
 		}
-		//Updates the Year End Balance column after a change has been made -JG
+		//Updates the Year End Balance column after a change has been made
 		function updateYearEndBalance(){
 		  //Declare variables
 		  let totalAmount = 0;

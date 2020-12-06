@@ -8,7 +8,7 @@
 		  { loan_year: 2024, loan_amount: 10000.00, loan_int_rate: 0.0453 }
 		]; 
 		
-		var loanAmount = 100000.00;
+		var loanAmount = 57,219.62;
 		
 		//function loadDoc() {
 		$(document).ready( function() {
@@ -147,14 +147,14 @@
 		}
 		
 		//Save function
-		function saveData(){
+		function save(){
 			console.log("Data Saved");
 			let data = JSON.stringify(loans);
 			localStorage.setItem("loanData", data);
 		}
 		
 		//Load function
-		function loadData(){
+		function load(){
 			if(localStorage.getItem("loanData") != null){
 			    console.log("data got");
 				let data = localStorage.getItem("loanData");

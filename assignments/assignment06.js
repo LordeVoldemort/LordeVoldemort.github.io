@@ -147,14 +147,14 @@
 		}
 		
 		//Save function
-		function save(){
+		function saveData(){
 			console.log("Data Saved");
 			let data = JSON.stringify(loans);
 			localStorage.setItem("loanData", data);
 		}
 		
 		//Load function
-		function load(){
+		function loadData(){
 			if(localStorage.getItem("loanData") != null){
 			    console.log("data got");
 				let data = localStorage.getItem("loanData");
@@ -210,16 +210,16 @@
 				$scope.paymentPlan[i] = {
 					"Year" : loans[4].loan_year + i + 1,
 					"Payments" : "$"+toComma(paymentPerYear.toFixed(2)),
-					"IntAmt" : "$"+toComma(interest.toFixed(2)),
-					"Bal" : "$"+toComma((a += interest).toFixed(2))
+					"InterestAmt" : "$"+toComma(interest.toFixed(2)),
+					"Balance" : "$"+toComma((a += interest).toFixed(2))
 				}
 			}
 			//Final payment of the loan
 			$scope.paymentPlan[9] = {
 				"Year" : loans[4].loan_year + 10,
 				"Payments" : "$"+toComma(a.toFixed(2)),
-				"IntAmt" : "$"+0,
-				"Bal" : "$"+0
+				"InterestAmt" : "$"+0,
+				"Balance" : "$"+0
 			}
 		  }
 		});

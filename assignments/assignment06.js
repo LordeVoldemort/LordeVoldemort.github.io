@@ -8,7 +8,7 @@
 		  { loan_year: 2024, loan_amount: 10000.00, loan_int_rate: 0.0453 }
 		]; 
 		
-		var loanAmount = 57,219.62;
+		var loanAmount = 57219.62;
 		
 		//function loadDoc() {
 		$(document).ready( function() {

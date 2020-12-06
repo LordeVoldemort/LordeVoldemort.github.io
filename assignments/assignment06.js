@@ -8,15 +8,15 @@
 		  { loan_year: 2024, loan_amount: 10000.00, loan_int_rate: 0.0453 }
 		]; 
 		
-		var interestAccrued = 57219.62;
+		var loanAmount = 57219.62;
 		
 		//function loadDoc() {
 		$(document).ready( function() {
 		
-		  // --Replaced JS with JQuery
+		  // --Replaced JS with JQuery -RH --
 		  // pre-fill defaults for first loan year
-		  var InitialYear = loans[0].loan_year;
-		  $("#loan_year0" + 1).val(InitialYear++);
+		  var initialYear = loans[0].loan_year;
+		  $("#loan_year0" + 1).val(initialYear++);
 		  var initialLoanAmount = loans[0].loan_amount;
 		  $("#loan_amt0" + 1).val(initialLoanAmount.toFixed(2));
 		  var initialInterestRate = loans[0].loan_int_rate;
@@ -27,7 +27,7 @@
 		  // pre-fill defaults for other loan years
 		  for(var i=2; i<6; i++) {
 			//JQuery			
-			$("#loan_year0" + i).val(InitialYear++); //Set value
+			$("#loan_year0" + i).val(initialYear++); //Set value
 			$("#loan_year0" + i).attr("disabled", "disabled");//Set attribute
 			$("#loan_year0" + i).css({"background-color":"gray", "color":"white"});//Set CSS property:value
 			
@@ -38,7 +38,7 @@
 			withInterest = (withInterest + initialLoanAmount) * (1 + initialInterestRate);
 			$("#loan_bal0" + i).val = toComma(withInterest.toFixed(2));
 			
-			}// end: "for" loop
+			} // end: "for" loop
 		  
 		  // all input fields: select contents on fucus
 		  $("input[type=text]").focus(function() {
@@ -63,7 +63,7 @@
 			}			 
 		  });
 		  
-		  // Update the interest rates once the focus on that cell is lost
+		  // Update the interest rates once the focus on that cell is lost - RH
 		  $("#loan_int01").blur( function() { 
 		    if(validate($(this).val())){
 			  updateInterestRate();
@@ -71,7 +71,7 @@
 			}
 		  });
 		  
-		  //Update the ammount, yearly balance and total once the focus is lost on a cell in the Amount column
+		  //Update the ammount, yearly balance and total once the focus is lost on a cell in the Amount column - RH
 		  //Note: https://api.jquery.com/attribute-contains-selector/
 		  $("input[id*=loan_amt]").blur(function(){
 			//console.log("Amount Selector: "+this);
@@ -103,7 +103,7 @@
 		  }
 		}
 		
-		//Update the cells in the Int Rate column.
+		//Update the cells in the Int Rate column. -RH
 		function updateInterestRate(){
 			loans[0].loan_int_rate = parseFloat($("#loan_int01").val());
 			for(var i=1; i<5; i++) {
@@ -111,25 +111,25 @@
 				$("#loan_int0"+ (i+1) ).val(loans[i].loan_int_rate);
 			}			
 		}
-		//Updates the Year End Balance column after a change has been made
+		//Updates the Year End Balance column after a change has been made -RH
 		function updateYearEndBalance(){
 		  //Declare variables
 		  let totalAmount = 0;
-		  interestAccrued = 0;
+		  loanAmount = 0;
 		  let amount = 0 , interestRate = 0;
 		  
 		  for(let i = 0 ; i < 5 ; i++){
 		    //Store values from loans array
 		    amount = loans[i].loan_amount;
 			interestRate = loans[i].loan_int_rate;
-			//Calculate total amount and interestAccrued
+			//Calculate total amount and loanAmount
 			totalAmount += amount;
-			interestAccrued = (interestAccrued + amount) * (1 + interestRate);
+			loanAmount = (loanAmount + amount) * (1 + interestRate);
 			//Output new Year End Balance to table  
-			$("#loan_bal0"+(i+1)).text("$"+toComma(interestAccrued.toFixed(2)));			
+			$("#loan_bal0"+(i+1)).text("$"+toComma(loanAmount.toFixed(2)));			
 		  }	
 		  //Calculate total interest that has accrued, then output to tabel
-		  $("#loan_int_accrued").text("$"+toComma((interestAccrued - totalAmount).toFixed(2)));
+		  $("#loan_int_accrued").text("$"+toComma((loanAmount - totalAmount).toFixed(2)));
 		}
 		//Validate the input value. 
 		//Checks if value is a whole number or decimal
@@ -145,7 +145,7 @@
 			}
 		}
 		
-		//Save the function
+		//Save function
 		function saveData(){
 			console.log("Data Saved");
 			let data = JSON.stringify(loans);
@@ -174,58 +174,48 @@
 		}
 		
 		//AngularJS
-		 //initializing the module
 		var app = angular.module('myPayments', []);
-		//adding controller
 		app.controller('paymentController', function ($scope){		  
+		  //console.log("AngularJS Module: 'myPayments'");	
 		  //Create properties
 		  $scope.paymentPlan = [];
 		  $scope.populate = function(){
 			  let interestRate = loans[0].loan_int_rate;
-			  let periods = 12; // payment periods of 12 months (1 year)
+			  //console.log(interestRate);
+			  let paymentsPerYear = 12; // payment paymentsPerYear per year
 			  
 			  //Formula for Amortized loan: a/{[(1+r)^n]-1}/[r(1+r)^n] = p
 			  // [p] - Monthly Loan Payment 
 			  // [a] - Total Amount 
 			  // [r]- Monthly Interest Rate 
-			  // [n] - Number of payments 
+			  // [n] - Number of payments
 			  //Source: https://www.thebalance.com/loan-payment-calculations-315564		  
 			  
-			  // Initializing variables
 			  let p, a, r, n;
-			  // Loan Amount
-			  a = interestAccrued; 
-			  // Interest rate for 1 year payment
-			  r = interestRate / 12
-			  // Numper of period of 10 years
-			  n = periods * 10;
-			  // Initializing the formula
-			  p = a / (((Math.pow((1+r),n)) - 1) / (r * Math.pow((1+r),n)));
-			  // Number of payments in 1 year
-			  let yearlyPayment = p * 12;
+			  a = loanAmount; 
+			  r = interestRate / 12 // Interest rate divided by 12 monthly payments
+			  n = paymentsPerYear * 10; // # of paymentsPerYear in 10 years
+			  p = a / (((Math.pow((1+r),n)) - 1) / (r * Math.pow((1+r),n))); // Plug and chug
 			  
-			  // This for loop will go through the record to update
-			  for(let i = 0 ; i < 9 ; i++){	
-			  // Subtract amount from total Loan Amount 'a'			
-				a = a - yearlyPayment; 
-
-				// Find new interest rate
-				let interest = a * interestRate;
-
+			  let paymentPerYear = p * 12; // number of payments in a year
+			  
+			  for(let i = 0 ; i < 9 ; i++){				
+				a = a - paymentPerYear; // Subtract payment from total principal 'a'
+				let interest = a * interestRate; // Find new interest rate
 				//Populate paymentPlan array
 				$scope.paymentPlan[i] = {
 					"Year" : loans[4].loan_year + i + 1,
-					"Pay" : "$"+toComma(yearlyPayment.toFixed(2)),
-					"IntAmt" : "$"+toComma(interest.toFixed(2)),
-					"Bal" : "$"+toComma((a += interest).toFixed(2))
+					"Payments" : "$"+toComma(paymentPerYear.toFixed(2)),
+					"InterestAmt" : "$"+toComma(interest.toFixed(2)),
+					"Balance" : "$"+toComma((a += interest).toFixed(2))
 				}
 			}
 			//Final payment of the loan
 			$scope.paymentPlan[9] = {
 				"Year" : loans[4].loan_year + 10,
-				"Pay" : "$"+toComma(a.toFixed(2)),
-				"IntAmt" : "$"+0,
-				"Bal" : "$"+0
+				"Payments" : "$"+toComma(a.toFixed(2)),
+				"InterestAmt" : "$"+0,
+				"Balance" : "$"+0
 			}
 		  }
 		});

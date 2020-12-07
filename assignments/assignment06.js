@@ -12,7 +12,7 @@ var loanAmount = 57219.62;
 //function loadDoc() {
 $(document).ready(function() {
 
-    // --Replaced JS with JQuery -RH --
+    // Used JavaScript instead of jQuery
     // pre-fill defaults for first loan year
     var initialYear = loans[0].loan_year;
     $("#loan_year0" + 1).val(initialYear++);

@@ -9,7 +9,6 @@ var loans = [
 
 var loanAmount = 57219.62;
 
-//function loadDoc() {
 $(document).ready(function() {
 
     // Used JavaScript instead of jQuery
